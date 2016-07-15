@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+    </title>
+      <canvas id="myCanvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
+      <style>
+      canvas {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        /*width: 800px;*/
+      }
+      img {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+      </style>
+  </head>
+  <body>
+    <img id="gif" src="http://8-themes.com/wp-content/uploads/2015/11/Games_Winter_on_the_background_level_of_the_game_Bejeweled_3_101533_.jpg" alt="Background"width="0"height="0">
+    <img id="block" src="http://www.gameart2d.com/uploads/3/0/9/1/30917885/169918_orig.jpg" alt="Block Sprites"width="0"height="0">
+    <script src="sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css"/>
+    <script type="application/javascript"/>
+    <!-- <img src="http://i181.photobucket.com/albums/x259/Ricoman2000/VX%20demoshots/battle.jpg"/> -->
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+      var score = 0;
+      var cWidth = canvas.width;
+      var cHeight = canvas.height;
+      var mainChar = {"x": cWidth / 2 - 18, "y": cHeight - 30, "w": 30, "h": 30}
+      mainChar.fillStyle = "blue"
+      ctx.fillRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+      var enemies = [];
+      var level = 1;
+      var spawnRate = 0.5;
+      var backImg = document.getElementById("gif");
+
+      <!-- ctx.drawImage(backImg, 800, 600) -->
+      var endGoal = {"x": randomNumber(1, cWidth - 50), "y": 0, "w": 30, "h": 30}
+      function easyLevels () {
+          while (enemies.length < 2000) {
+            if (Math.random() > spawnRate) {
+              var enemy = {"x": randomNumber(1, 730), "y": randomNumber(-200, -30), "w": randomNumber(40, 80), "h": 40}
+                // debugger
+            }
+            else {
+              var enemy = {"x": 900, "y": 900, "w": 1, "h": 1}
+            }
+            return enemies.push(enemy)
+          }
+        // debugger
+        <!-- level ++; -->
+        enemies = [];
+        startGame();
+      }
+
+
+      function mediumLevels () {
+        // debugger
+        count = 0
+      if (level === 2) {
+        // debugger
+        // enemies = [];
+        while (enemies.length < 2000) {
+          if (Math.random() > 0.76) {
+            var enemy = {"x": randomNumber(1, 730), "y": randomNumber(-10000,0), "w": 20, "h": 40}
+            return enemies.push(enemy)
+          }
+        }
+      }
+        startGame();
+      }
+
+      function randomNumber (x, y) {
+        return Math.floor(Math.random() * ((y - x) + 1) + x)
+      }
+
+      function spawnEnemy(x, y, w, h) {
+        return ctx.fillRect(x, y, w, h)
+      }
+
+      function hellLevel () {
+        var enemyX = Math.floor(Math.random() * cWidth) + 1
+        var enemyW = Math.floor(Math.random() * 120) + 50
+        var enemyH = Math.floor(Math.random() * 90) + 70
+        while (enemies.length < 500) {
+          var enemy = {"x": enemyX, "y": -30, "w": enemyW, "h": enemyH}
+          return enemies.push(enemy)
+        }
+        return enemies;
+      }
+
+      function animateLevel1 () {
+        ctx.clearRect(0, 0, cWidth, cHeight)
+        ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
+        <!-- ctx.drawImage(backImg,0, 0, cWidth, cHeight); -->
+        ctx.font="80px Verdana";
+        ctx.fillText(`Phase ${level}`, 100, 100)
+        ctx.fillText(`Score: ${score}`, 90, 200)
+        ctx.fillText(`High Score: ${highScore}`, 70, 300)
+        ctx.fillRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+        drawEnemyLevel1();
+      }
+
+      function keyPressed (event) {
+        // debugger
+        if (event.keyCode === 37) {
+          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+          ctx.fillRect(mainChar.x -= 30, mainChar.y, mainChar.w, mainChar.h)
+        }
+        if (event.keyCode === 39) {
+          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+          ctx.fillRect(mainChar.x += 30, mainChar.y, mainChar.w, mainChar.h)
+        }
+        if (event.keyCode === 38) {
+          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+          ctx.fillRect(mainChar.x, mainChar.y -= 15, mainChar.w, mainChar.h)
+        }
+        if (event.keyCode === 40) {
+          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+          ctx.fillRect(mainChar.x, mainChar.y += 15, mainChar.w, mainChar.h)
+        }
+      }
+      var lost = false;
+      var powerUp = {"x":randomNumber(50, 710), "y": 20 + 5, "w":15, "h":15}
+      function drawEnemyLevel1() {
+          // debugger
+          this.easyLevels();
+          var dy = 20;
+            for (var i = 0; i < enemies.length; i++) {
+              var enemy = enemies[i]
+              if (enemy.y >= cHeight - 30) {
+                ctx.clearRect(enemy.x, enemy.y, enemy.w, enemy.h);
+              }
+              if (i % 10 === 0) {
+                ctx.fillStyle = "yellow"
+                ctx.fillRect(powerUp.x, powerUp.y += dy, powerUp.w, powerUp.h);
+              }
+              if (i > 125 && i < 250) {
+                level = 2
+                ctx.fillStyle = "blue"
+                var numAdd = 10
+                spawnEnemy(enemy.x, enemy.y += dy + 3, enemy.w + numAdd, enemy.h + numAdd)
+              } else if (i < 125) {
+                level = 1
+                ctx.fillStyle = "red"
+                // ctx.fillRect(enemy.x, enemy.y += dy, enemy.w, enemy.h)
+                spawnEnemy(enemy.x, enemy.y += dy, enemy.w, enemy.h)
+              } else if (i < 375 && i > 250) {
+                level = 3
+                ctx.fillStyle = "pink"
+                spawnEnemy(enemy.x, enemy.y += dy + 20, enemy.w + numAdd + dy, enemy.h + dy + numAdd)
+              } else if (i > 375 && i < 500) {
+                level = 4
+                ctx.fillStyle = "green"
+                spawnEnemy(enemy.x, enemy.y += dy + 25, enemy.w + numAdd + dy * 2, enemy.h + dy + numAdd * 2)
+              }
+              else if (i > 500 && i < 3000){
+                level = "FINAL"
+                ctx.fillStyle = "purple"
+                spawnEnemy(enemy.x, enemy.y += dy + 35, enemy.w + numAdd + dy * 3, enemy.h + dy + numAdd * 3)
+              }
+
+        }
+      }
+      function drawEnemyLevel2() {
+      if (level === 2) {
+        this.mediumLevels();
+        var dy = 2;
+          for (var i = 0; i < enemies.length; i++) {
+            var enemy = enemies[i]
+            if (enemy.y >= cHeight - 30) {
+              ctx.clearRect(enemy.x, enemy.y, enemy.w, enemy.h);
+            }
+            ctx.fillStyle = "blue"
+            setTimeout(ctx.fillRect(enemy.x, enemy.y += dy, enemy.w, enemy.h), 20000);
+          }
+        }
+      }
+      var game;
+      function startGame() {
+        game = setInterval(animateLevel1, 100)
+        setInterval(detectHit, 10)
+        setInterval(keepScore, 500)
+        <!-- clearInterval(game); -->
+      }
+
+      function gameOver () {
+        swal({title: "You Lost", text: "Play Again?", type: "warning", showCancelButton: true, confirmButtonColor: "red", confirmButtonText: "Try Again", closeOnConfirm: true }, function(){
+          ctx.clearRect(0, 0, cWidth, cHeight);
+          startGame();
+        });
+      }
+      function detectHit () {
+        if (mainChar.x < powerUp.x + powerUp.w && mainChar.x + mainChar.w > powerUp.x && mainChar.y < powerUp.y + powerUp.h && mainChar.h + mainChar.y > powerUp.y) {
+          swal("POWERUP")
+        }
+          enemies.forEach ((enemy => {
+            if (mainChar.x < enemy.x + enemy.w && mainChar.x + mainChar.w > enemy.x && mainChar.y < enemy.y + enemy.h && mainChar.h + mainChar.y > enemy.y) {
+              ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h);
+              ctx.fillRect(mainChar.x, mainChar.y += 35, mainChar.w, mainChar.h )
+              // break
+            }
+          })
+        )
+        if (mainChar.x <= 0) {
+          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h);
+          ctx.fillRect(0, mainChar.y, mainChar.w, mainChar.h);
+        }
+        else if (mainChar.x >= 770) {
+          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h);
+          ctx.fillRect(770, mainChar.y, mainChar.w, mainChar.h);
+        }
+          if (mainChar.y > cHeight) {
+            lost = true;
+            <!-- debugger -->
+            clearInterval(game);
+            gameOver();
+
+          }
+
+      }
+
+      var highScore;
+      if (score > highScore) {
+        highScore = score;
+      } else {
+        highScore = 0;
+      }
+      var blockSprites =
+
+      window.addEventListener("keydown", keyPressed, true)
+      function keepScore () {
+        score++
+      }
+
+      startGame();
+    </script>
+  </body>
+</html>
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Praccc Workshop</title>
+    <style>
+      { padding: 0; margin: 0 }
+      canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+  </head>
+  <body>
+
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <script>
+      let canvas = document.getElementById("myCanvas");
+      // grab our canvas to save
+      let ctx = canvas.getContext("2d");
+      // call and hold our canvas tool render-er
+
+      let x = canvas.width - 20;
+      let y = canvas.height/2;
+      //sets starting location for ball
+
+      let dx = -1;
+      let dy = 2;
+      //sets moving direction for ball
+
+      let ballRadius = 10;
+      //set default radius for ball
+
+      let colored = "#0095DD";
+
+      function drawBall(){
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI*2, false);
+        ctx.fillStyle = colored;
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      function change(){
+        if (colored === "#00ff6a"){
+          colored = "#ff00d0";
+        } else {
+          colored = "#00ff6a";
+        }
+      }
+
+      function draw(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBall();
+        if (y + dy < ballRadius || y + dy > canvas.height - ballRadius){
+          dy = -dy;
+          change();
+        }
+
+        if (x + dx < ballRadius || x + dx > canvas.width - ballRadius){
+          dx = -dx;
+          change();
+        }
+        x += dx;
+        y += dy;
+      }
+      setInterval(draw, 10);
+      //every "x" millisecond to show. bigger number,
+      //slower render, slower speed. vice-versa.
+
+
+      // ctx.beginPath();
+      // ctx.rect(20, 40, 50, 50);
+      // ctx.fillStyle = "#FF0000";
+      // ctx.fill();
+      // ctx.closePath();
+      //
+      //
+      // ctx.beginPath();
+      // ctx.arc(30, 45, 20, 0, Math.PI*2, false);
+      // ctx.fillStyle = "green";
+      // ctx.fill();
+      // ctx.closePath();
+      //
+      // ctx.beginPath();
+      // ctx.rect(160, 10, 200, 240);
+      // ctx.strokeStyle = "rgba(0, 0, 255, 1)";
+      // ctx.stroke();
+      // ctx.closePath();
+
+    </script>
+
+
+  </body>
+</html> -->
+
+<!-- // ctx.beginPath();
+// ctx.moveTo(100,0);
+// ctx.lineTo(100,cHeight);
+// ctx.stroke();
+// ctx.moveTo(200, 0);
+// ctx.lineTo(200,cHeight);
+// ctx.stroke();
+// ctx.moveTo(300, 0);
+// ctx.lineTo(300,cHeight);
+// ctx.stroke();
+// ctx.moveTo(400, 0);
+// ctx.lineTo(400,cHeight);
+// ctx.stroke();
+// ctx.moveTo(500, 0);
+// ctx.lineTo(500,cHeight);
+// ctx.stroke();
+// ctx.moveTo(600, 0);
+// ctx.lineTo(600,cHeight);
+// ctx.stroke(); -->
+<!-- enemies.map ((enemy => {
+  if (enemy.y >= cHeight - 30) {
+    ctx.clearRect(enemy.x, enemy.y, enemy.w, enemy.h);
+  }
+  ctx.fillRect(enemy.x, enemy.y += dy, enemy.w, enemy.h);
+})
+) -->
+<!-- else if (level === 2) {
+  enemies = [];
+  swal({title: "Level Complete!", text: "The Medium Level Starts NOW", timer: 500, showConfirmButton: false });
+  setInterval(animateLevel2, 1);
+} -->
+<!-- mainChar.w + mainChar.x >= enemy.x && mainChar.x <= enemy.w + enemy.x && mainChar.y >= enemy.y && mainChar.y <= enemy.y + enemy.w -->
