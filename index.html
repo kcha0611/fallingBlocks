@@ -202,15 +202,11 @@
       }
 
       function gameOver () {
-        swal({title: "You Lost", text: "Play Again?", type: "warning", showCancelButton: true, confirmButtonColor: "red", confirmButtonText: "Try Again", closeOnConfirm: true }, function(){
-          ctx.clearRect(0, 0, cWidth, cHeight);
-          startGame();
+          alert(`You lost. Your score was ${score}. Try again?`)
+          <!-- ctx.clearRect(0, 0, cWidth, cHeight); -->
+          init();
         });
       }
-      function detectHit () {
-        if (mainChar.x < powerUp.x + powerUp.w && mainChar.x + mainChar.w > powerUp.x && mainChar.y < powerUp.y + powerUp.h && mainChar.h + mainChar.y > powerUp.y) {
-          swal("POWERUP")
-        }
           enemies.forEach ((enemy => {
             if (mainChar.x < enemy.x + enemy.w && mainChar.x + mainChar.w > enemy.x && mainChar.y < enemy.y + enemy.h && mainChar.h + mainChar.y > enemy.y) {
               ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h);
