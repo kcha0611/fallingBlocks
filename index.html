@@ -13,9 +13,12 @@
         padding:0;
         margin:0;
         text-align: center;
+<<<<<<< HEAD
         font-family: "Lobster";
         font-size: 40px;
         color: red;
+=======
+>>>>>>> added instructions
       }
       canvas {
         padding-left: 0;
@@ -47,17 +50,26 @@
       var ctx = canvas.getContext("2d");
 
       var game;
+<<<<<<< HEAD
       var hitDetect;
       function startGame() {
         game = setInterval(animateLevel1, 100)
         hitDetect = setInterval(detectHit, 10)
+=======
+      function startGame() {
+        game = setInterval(animateLevel1, 100)
+        setInterval(detectHit, 10)
+>>>>>>> added instructions
         setInterval(keepScore, 500)
         <!-- clearInterval(game); -->
       }
 
       function init () {
+<<<<<<< HEAD
         ctx.clearRect(-1000, -1000, cWidth + 1000, cHeight + 1000);
         ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h);
+=======
+>>>>>>> added instructions
         alert("The objective of the game is to dodge the blocks for as long as you can! Use the left, right, up, and down arrow keys to move around. If you go too far off to the left, right or down you lose so be careful! Ready to play? Click OK. Good Luck!")
         startGame();
       }
@@ -79,7 +91,15 @@
       function easyLevels () {
           while (enemies.length < 2000) {
             if (Math.random() > spawnRate) {
+<<<<<<< HEAD
+<<<<<<< HEAD
               var enemy = {"x": randomNumber(1, 730), "y": randomNumber(-200, -30), "w": 50, "h": 50}
+=======
+              var enemy = {"x": randomNumber(1, 730), "y": randomNumber(-200, -30), "w": 40, "h": 40}
+>>>>>>> added instructions
+=======
+              var enemy = {"x": randomNumber(1, 730), "y": randomNumber(-200, -30), "w": 50, "h": 50}
+>>>>>>> added instructions
                 // debugger
             }
             else {
@@ -94,6 +114,28 @@
       }
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+      function mediumLevels () {
+        // debugger
+        count = 0
+      if (level === 2) {
+        // debugger
+        // enemies = [];
+        while (enemies.length < 2000) {
+          if (Math.random() > 0.76) {
+            var enemy = {"x": randomNumber(1, 730), "y": randomNumber(-10000,0), "w": 20, "h": 40}
+            return enemies.push(enemy)
+          }
+        }
+      }
+        startGame();
+      }
+>>>>>>> added instructions
+
+>>>>>>> added instructions
       function randomNumber (x, y) {
         return Math.floor(Math.random() * ((y - x) + 1) + x)
       }
@@ -156,6 +198,8 @@
                 // ctx.fillRect(enemy.x, enemy.y += dy, enemy.w, enemy.h)
                 spawnEnemy(enemy.x, enemy.y += dy, enemy.w, enemy.h)
                 ctx.drawImage(blockSprite, 18,126,18,18, enemy.x, enemy.y, enemy.w, enemy.h)
+                ctx.drawImage(blockImage,126,90,18,18,enemy.x, enemy.y, enemy.w, enemy.h)
+                ctx.drawImage(blockSprite, 18,126,18,18, enemy.x, enemy.y, enemy.w, enemy.h)
               } else if (i < 375 && i > 250) {
                 level = 3
                 ctx.fillStyle = "#5A5E5E"
@@ -190,12 +234,15 @@
           }
         }
       }
+<<<<<<< HEAD
 
       function startGameAgain() {
         window.removeEventListener("load", init, false)
         window.addEventListener("load", init, false);
         <!-- init(); -->
       }
+=======
+>>>>>>> added instructions
 
       function gameOver () {
         clearInterval(game)
@@ -217,6 +264,7 @@
           })
         )
         if (mainChar.x <= 0) {
+<<<<<<< HEAD
           clearInterval(game)
           clearInterval(hitDetect)
           gameOver()
@@ -224,6 +272,11 @@
         else if (mainChar.x >= 770) {
           clearInterval(game)
           clearInterval(hitDetect)
+=======
+          gameOver()
+        }
+        else if (mainChar.x >= 770) {
+>>>>>>> added instructions
           gameOver()
         }
           if (mainChar.y >= cHeight) {
