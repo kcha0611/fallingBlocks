@@ -44,11 +44,10 @@
       var backImg = document.getElementById("gif");
 
       <!-- ctx.drawImage(backImg, 800, 600) -->
-      var endGoal = {"x": randomNumber(1, cWidth - 50), "y": 0, "w": 30, "h": 30}
-      function easyLevels () {
+        function easyLevels () {
           while (enemies.length < 2000) {
             if (Math.random() > spawnRate) {
-              var enemy = {"x": randomNumber(1, 730), "y": randomNumber(-200, -30), "w": randomNumber(40, 80), "h": 40}
+              var enemy = {"x": randomNumber(1, 730), "y": randomNumber(-200, -30), "w": 40, "h": 40}
                 // debugger
             }
             else {
@@ -63,21 +62,6 @@
       }
 
 
-      function mediumLevels () {
-        // debugger
-        count = 0
-      if (level === 2) {
-        // debugger
-        // enemies = [];
-        while (enemies.length < 2000) {
-          if (Math.random() > 0.76) {
-            var enemy = {"x": randomNumber(1, 730), "y": randomNumber(-10000,0), "w": 20, "h": 40}
-            return enemies.push(enemy)
-          }
-        }
-      }
-        startGame();
-      }
 
       function randomNumber (x, y) {
         return Math.floor(Math.random() * ((y - x) + 1) + x)
@@ -87,16 +71,6 @@
         return ctx.fillRect(x, y, w, h)
       }
 
-      function hellLevel () {
-        var enemyX = Math.floor(Math.random() * cWidth) + 1
-        var enemyW = Math.floor(Math.random() * 120) + 50
-        var enemyH = Math.floor(Math.random() * 90) + 70
-        while (enemies.length < 500) {
-          var enemy = {"x": enemyX, "y": -30, "w": enemyW, "h": enemyH}
-          return enemies.push(enemy)
-        }
-        return enemies;
-      }
 
       function animateLevel1 () {
         ctx.clearRect(0, 0, cWidth, cHeight)
@@ -154,6 +128,7 @@
                 ctx.fillStyle = "red"
                 // ctx.fillRect(enemy.x, enemy.y += dy, enemy.w, enemy.h)
                 spawnEnemy(enemy.x, enemy.y += dy, enemy.w, enemy.h)
+                ctx.drawImage(blockImage,126,90,18,18,enemy.x, enemy.y, enemy.w, enemy.h)
               } else if (i < 375 && i > 250) {
                 level = 3
                 ctx.fillStyle = "pink"
