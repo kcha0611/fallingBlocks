@@ -7,40 +7,47 @@
     </title>
       <h1>Falling Blocks</h1>
       <canvas id="myCanvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
-      <style>
-      h1 {
-        padding:0;
-        margin:0;
-        text-align: center;
-        font-family: "Lobster";
-        font-size: 40px;
-        color: red;
-      }
-      canvas {
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        /*width: 800px;*/
-      }
-      img {
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-      }
-      </style>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="main.css" />
+
   </head>
   <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <img id="gif" src="http://8-themes.com/wp-content/uploads/2015/11/Games_Winter_on_the_background_level_of_the_game_Bejeweled_3_101533_.jpg" alt="Background"width="0"height="0">
     <img id="block" src="http://orig15.deviantart.net/8890/f/2012/108/b/4/pixel_block_sprites_by_crookedpixel-d4wkvhz.png" alt="Block Sprites"width="0"height="0">
     <script src="sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css"/>
-    <script type="text/javascript"/>
+
+    <div class="container">
+      <div class="modal fade" id="myModalStart" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Falling Blocks!</h4>
+            </div>
+            <div class="modal-body">
+              <p>The objective of the game is to dodge the blocks for as long as you can! Use the left, right, up, and down arrow keys to move around. If you go too far off to the left, right or down you lose so be careful! Press Play when you're ready! Good Luck!</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" onClick="init()">Play</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <script type="text/javascript">
+      $(window).load(function(){
+          $('#myModalStart').modal('show');
+      });
+    </script>
+    <script type="text/javascript">
     <!-- <img src="http://i181.photobucket.com/albums/x259/Ricoman2000/VX%20demoshots/battle.jpg"/> -->
-    window.addEventListener("load", init, false)
+    // window.addEventListener("load", init, false)
+
 
       var canvas = document.getElementById("myCanvas");
       var ctx = canvas.getContext("2d");
@@ -51,13 +58,17 @@
         game = setInterval(animateLevel1, 100)
         hitDetect = setInterval(detectHit, 10)
         setInterval(keepScore, 500)
-        <!-- clearInterval(game); -->
       }
 
       function init () {
+        clearInterval(game);
         ctx.clearRect(-1000, -1000, cWidth + 1000, cHeight + 1000);
-        ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h);
-        alert("The objective of the game is to dodge the blocks for as long as you can! Use the left, right, up, and down arrow keys to move around. If you go too far off to the left, right or down you lose so be careful! Ready to play? Click OK. Good Luck!")
+        ctx.clearRect(mainChar.x, mainChar.y, cWidth + 1000, cHeight + 1000);
+        startGame();
+      }
+
+      function restartGame () {
+        location.reload();
         startGame();
       }
 
@@ -73,7 +84,6 @@
 
       var blockSprite = document.getElementById("block");
 
-      <!-- ctx.drawImage(backImg, 800, 600) -->
       var endGoal = {"x": randomNumber(1, cWidth - 50), "y": 0, "w": 30, "h": 30}
       function easyLevels () {
           while (enemies.length < 2000) {
@@ -86,8 +96,6 @@
             }
             return enemies.push(enemy)
           }
-        // debugger
-        <!-- level ++; -->
         enemies = [];
         startGame();
       }
@@ -197,12 +205,11 @@
       }
 
       function gameOver () {
-        clearInterval(game)
+        // clearInterval(game)
         ctx.clearRect(-1000, -1000, cWidth + 1000, cHeight + 1000);
         ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
-        alert(`You lost. Your score was ${score}. Try again?`)
+        $('#myModalEnd').modal('show');
         ctx.clearRect(-1000, -1000, cWidth + 1000, cHeight + 1000);
-        startGameAgain();
       }
 
 
@@ -242,7 +249,6 @@
       } else {
         highScore = 0;
       }
-      var blockSprites =
 
       window.addEventListener("keydown", keyPressed, true)
       function keepScore () {
@@ -250,5 +256,25 @@
       }
 
     </script>
+    <div class="container">
+      <div class="modal fade" id="myModalEnd" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">You Lose!</h4>
+            </div>
+            <div class="modal-body">
+              <p>Your Final Score was: <script type="text/javascript">document.write(score)</script> Thanks for playing! Click Try Again! to play again.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" onClick="restartGame()">Try Again!</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </body>
 </html>
