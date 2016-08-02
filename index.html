@@ -18,7 +18,10 @@
     <img id="block" src="http://orig15.deviantart.net/8890/f/2012/108/b/4/pixel_block_sprites_by_crookedpixel-d4wkvhz.png" alt="Block Sprites"width="0"height="0">
     <script src="sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css"/>
-
+    <link href='http://fonts.googleapis.com/css?family=Gravitas+One' rel='stylesheet'  type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'  type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'  type='text/css'>
     <div class="container">
       <div class="modal fade" id="myModalStart" role="dialog">
         <div class="modal-dialog">
@@ -28,7 +31,7 @@
               <h4 class="modal-title">Falling Blocks!</h4>
             </div>
             <div class="modal-body">
-              <p>The objective of the game is to dodge the blocks for as long as you can! Use the left, right, up, and down arrow keys to move around. If you go too far off to the left, right or down you lose so be careful! Press Play when you're ready! Good Luck!</p>
+              <p>The objective of the game is to dodge the blocks for as long as you can! Use the left, right, up, and down arrow keys to move around. If you fall too far you lose so be careful! Press Play when you're ready! Good Luck!</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal" onClick="init()">Play</button>
@@ -114,10 +117,11 @@
         ctx.clearRect(0, 0, cWidth, cHeight)
         ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
         <!-- ctx.drawImage(backImg,0, 0, cWidth, cHeight); -->
-        ctx.font="80px Verdana";
+        ctx.font="40px Gravitas One";
+        ctx.fillStyle="black"
         ctx.fillText(`Phase ${level}`, 100, 100)
         ctx.fillText(`Score: ${score}`, 90, 200)
-        ctx.fillText(`High Score: ${highScore}`, 70, 300)
+        ctx.fillText(`High Score: 1092`, 70, 300)
         ctx.fillRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
         drawEnemyLevel1();
       }
@@ -222,25 +226,28 @@
             }
           })
         )
-        if (mainChar.x <= 0) {
-          clearInterval(game)
-          clearInterval(hitDetect)
-          gameOver()
+        if (mainChar.x < 0) {
+          // clearInterval(game)
+          // clearInterval(hitDetect)
+          // gameOver()
+          mainChar.x = cWidth
         }
-        else if (mainChar.x >= 770) {
-          clearInterval(game)
-          clearInterval(hitDetect)
-          gameOver()
+        else if (mainChar.x > cWidth) {
+          // clearInterval(game)
+          // clearInterval(hitDetect)
+          // gameOver()
+          mainChar.x = 0
         }
-          if (mainChar.y >= cHeight) {
-            lost = true;
-            <!-- debugger -->
-            clearInterval(game);
-            clearInterval(hitDetect)
-            gameOver();
+        if (mainChar.y >= cHeight) {
+          clearInterval(game);
+          clearInterval(hitDetect)
+          gameOver();
+          // mainChar.y = 0
 
-          }
-
+        }
+        else if (mainChar.y < 0) {
+          mainChar.y = cHeight
+        }
       }
 
       var highScore;
