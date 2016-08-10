@@ -159,29 +159,29 @@
                 level = 2
                 enemy.fillStyle = "#32AB9B"
                 var numAdd = 10
-                spawnEnemy(enemy.x, enemy.y += dy + 3, enemy.w + numAdd, enemy.h + numAdd)
+                spawnEnemy(enemy.x, enemy.y += dy + 3, enemy.w + numAdd - 10, enemy.h + numAdd - 10)
                 ctx.drawImage(blockSprite, 54,54,18,18, enemy.x, enemy.y, enemy.w + numAdd, enemy.h + numAdd)
               } else if (i < 125) {
                 level = 1
                 enemy.fillStyle = "blue"
                 // ctx.fillRect(enemy.x, enemy.y += dy, enemy.w, enemy.h)
-                spawnEnemy(enemy.x, enemy.y += dy, enemy.w, enemy.h)
+                spawnEnemy(enemy.x, enemy.y += dy, enemy.w - 10, enemy.h - 10)
                 ctx.drawImage(blockSprite, 18,126,18,18, enemy.x, enemy.y, enemy.w, enemy.h)
               } else if (i < 375 && i > 250) {
                 level = 3
                 enemy.fillStyle = "#5A5E5E"
-                spawnEnemy(enemy.x, enemy.y += dy + 20, enemy.w + numAdd + dy, enemy.h + dy + numAdd)
+                spawnEnemy(enemy.x, enemy.y += dy + 20, enemy.w + numAdd + dy - 10, enemy.h + dy + numAdd - 10)
                 ctx.drawImage(blockSprite, 54,90,18,18, enemy.x, enemy.y, enemy.w + numAdd + dy, enemy.h + numAdd + dy)
               } else if (i > 375 && i < 500) {
                 level = 4
                 enemy.fillStyle = "#AC42C2"
-                spawnEnemy(enemy.x, enemy.y += dy + 25, enemy.w + numAdd + dy * 2.5, enemy.h + dy + numAdd * 2.5)
+                spawnEnemy(enemy.x, enemy.y += dy + 25, enemy.w + numAdd + dy * 2.5 - 10, enemy.h + dy + numAdd * 2.5 - 10)
                 ctx.drawImage(blockSprite, 90,54,18,18, enemy.x, enemy.y, enemy.w + numAdd + dy * 2.5, enemy.h + numAdd + dy * 2.5)
               }
               else if (i > 500 && i < 3000){
                 level = "FINAL"
                 enemy.fillStyle = "#DE0B20"
-                spawnEnemy(enemy.x, enemy.y += dy + 35, enemy.w + numAdd + dy * 4, enemy.h + dy + numAdd * 4)
+                spawnEnemy(enemy.x, enemy.y += dy + 35, enemy.w + numAdd + dy * 4 - 10, enemy.h + dy + numAdd * 4 - 10)
                 ctx.drawImage(blockSprite, 90,90,18,18, enemy.x, enemy.y, enemy.w + numAdd + dy * 4, enemy.h + numAdd + dy * 4)
               }
 
