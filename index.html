@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <img id="gif" src="http://8-themes.com/wp-content/uploads/2015/11/Games_Winter_on_the_background_level_of_the_game_Bejeweled_3_101533_.jpg" alt="Background"width="0"height="0">
     <img id="block" src="http://orig15.deviantart.net/8890/f/2012/108/b/4/pixel_block_sprites_by_crookedpixel-d4wkvhz.png" alt="Block Sprites"width="0"height="0">
-    <img id="mainchar" src="http://res.cloudinary.com/dllnnnotc/image/upload/c_scale,h_60/v1470856197/147085530414650_zmt2dp.png" alt="Main Character">
+    <img id="mainchar" src="http://res.cloudinary.com/dllnnnotc/image/upload/c_scale,h_60/v1470856197/147085530414650_zmt2dp.png" alt="Main Character" width="0" height="0">
     <script src="sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css"/>
     <link href='http://fonts.googleapis.com/css?family=Gravitas+One' rel='stylesheet'  type='text/css'>
@@ -117,6 +117,7 @@
 
       function animateLevel1 () {
         ctx.clearRect(0, 0, cWidth, cHeight)
+        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
         ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
         <!-- ctx.drawImage(backImg,0, 0, cWidth, cHeight); -->
         ctx.font="40px Gravitas One";
@@ -124,7 +125,6 @@
         ctx.fillText(`Phase ${level}`, 100, 100)
         ctx.fillText(`Score: ${score}`, 90, 200)
         ctx.fillText(`High Score: 1092`, 70, 300)
-        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
         drawEnemyLevel1();
       }
 
