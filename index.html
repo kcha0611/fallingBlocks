@@ -125,11 +125,16 @@
 
       function animateLevel1 () {
         ctx.clearRect(0, 0, cWidth, cHeight)
-        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+        drawMainChar();
         ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
+        scoreTracker();
         drawEnemyLevel1();
       }
 
+      function drawMainChar () {
+        ctx.globalAlpha = 0.3
+        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+      }
       function keyPressed (event) {
         // debugger
         if (event.keyCode === 37) {
@@ -254,12 +259,6 @@
         }
       }
 
-      var highScore;
-      if (score > highScore) {
-        highScore = score;
-      } else {
-        highScore = 0;
-      }
 
       window.addEventListener("keydown", keyPressed, true)
       function keepScore () {
