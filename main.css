@@ -11,6 +11,11 @@ html {
   height: 100%;
   background: url("http://res.cloudinary.com/dllnnnotc/image/upload/c_scale,h_947,w_1362/v1470853140/65228d1201860376-programa-de-web-ladrillos-bricks002_a6guyl.jpg");
 }
+
+body {
+  background: url("http://res.cloudinary.com/dllnnnotc/image/upload/c_scale,h_947,w_1362/v1470853140/65228d1201860376-programa-de-web-ladrillos-bricks002_a6guyl.jpg");
+}
+
 canvas {
   padding-left: 0;
   padding-right: 0;
