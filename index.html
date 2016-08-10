@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <img id="gif" src="http://8-themes.com/wp-content/uploads/2015/11/Games_Winter_on_the_background_level_of_the_game_Bejeweled_3_101533_.jpg" alt="Background"width="0"height="0">
     <img id="block" src="http://orig15.deviantart.net/8890/f/2012/108/b/4/pixel_block_sprites_by_crookedpixel-d4wkvhz.png" alt="Block Sprites"width="0"height="0">
-    <img id="mainchar" src="http://res.cloudinary.com/dllnnnotc/image/upload/c_scale,h_60/v1470856197/147085530414650_zmt2dp.png" alt="Main Character" width="0" height="0">
+    <img id="mainchar" src="http://res.cloudinary.com/dllnnnotc/image/upload/c_scale,h_70,w_50/v1470856197/147085530414650_zmt2dp.png" alt="Main Character" width="0" height="0">
     <script src="sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css"/>
     <link href='http://fonts.googleapis.com/css?family=Gravitas+One' rel='stylesheet'  type='text/css'>
@@ -62,7 +62,7 @@
         game = setInterval(animateLevel1, 100)
         hitDetect = setInterval(detectHit, 10)
         setInterval(keepScore, 500)
-        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+        // ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
       }
 
       function init () {
@@ -80,7 +80,7 @@
       var score = 0;
       var cWidth = canvas.width;
       var cHeight = canvas.height;
-      var mainChar = {"x": cWidth / 2 - 18, "y": cHeight - 60, "w": 32, "h": 60}
+      var mainChar = {"x": cWidth / 2 - 18, "y": cHeight - 60, "w": 50, "h": 70}
       mainChar.fillStyle = "blue"
       ctx.fillRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
       var enemies = [];
@@ -118,9 +118,8 @@
 
       function animateLevel1 () {
         ctx.clearRect(0, 0, cWidth, cHeight)
-        // ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
         ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
-        <!-- ctx.drawImage(backImg,0, 0, cWidth, cHeight); -->
         ctx.font="40px Gravitas One";
         ctx.fillStyle="white"
         ctx.fillText(`Phase ${level}`, 100, 100)
@@ -275,7 +274,7 @@
               <h4 class="modal-title">You Lose!</h4>
             </div>
             <div class="modal-body">
-              <p>Your Final Score was: <script type="text/javascript">document.write(score)</script> Thanks for playing! Click Try Again! to play again.</p>
+              <p>Thanks for playing! Click Try Again! to play again.</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal" onClick="restartGame()">Try Again!</button>
