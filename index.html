@@ -63,6 +63,7 @@
         hitDetect = setInterval(detectHit, 10)
         setInterval(keepScore, 500)
         ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+        scoreTracker();
       }
 
       function init () {
@@ -81,7 +82,6 @@
       var cWidth = canvas.width;
       var cHeight = canvas.height;
       var mainChar = {"x": cWidth / 2 - 18, "y": cHeight - 60, "w": 50, "h": 70}
-      mainChar.fillStyle = "blue"
       ctx.fillRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
       var enemies = [];
       var level = 1;
@@ -115,16 +115,18 @@
         return ctx.fillRect(x, y, w, h)
       }
 
-
-      function animateLevel1 () {
-        ctx.clearRect(0, 0, cWidth, cHeight)
-        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
-        ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
+      function scoreTracker () {
         ctx.font="40px Gravitas One";
         ctx.fillStyle="white"
         ctx.fillText(`Phase ${level}`, 100, 100)
         ctx.fillText(`Score: ${score}`, 90, 200)
         ctx.fillText(`High Score: 1092`, 70, 300)
+      }
+
+      function animateLevel1 () {
+        ctx.clearRect(0, 0, cWidth, cHeight)
+        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+        ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
         drawEnemyLevel1();
       }
 
