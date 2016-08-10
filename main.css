@@ -24,6 +24,7 @@ canvas {
   display: block;
   /*width: 800px;*/
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+  background: url("http://res.cloudinary.com/dllnnnotc/image/upload/c_scale,h_602,w_802/v1470853455/4Onfmt_iwynsx.jpg");
 }
 img {
   padding-left: 0;
