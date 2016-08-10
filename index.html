@@ -16,6 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <img id="gif" src="http://8-themes.com/wp-content/uploads/2015/11/Games_Winter_on_the_background_level_of_the_game_Bejeweled_3_101533_.jpg" alt="Background"width="0"height="0">
     <img id="block" src="http://orig15.deviantart.net/8890/f/2012/108/b/4/pixel_block_sprites_by_crookedpixel-d4wkvhz.png" alt="Block Sprites"width="0"height="0">
+    <img id="mainchar" src="http://res.cloudinary.com/dllnnnotc/image/upload/c_scale,h_60/v1470856197/147085530414650_zmt2dp.png" alt="Main Character">
     <script src="sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css"/>
     <link href='http://fonts.googleapis.com/css?family=Gravitas+One' rel='stylesheet'  type='text/css'>
@@ -78,7 +79,7 @@
       var score = 0;
       var cWidth = canvas.width;
       var cHeight = canvas.height;
-      var mainChar = {"x": cWidth / 2 - 18, "y": cHeight - 30, "w": 30, "h": 30}
+      var mainChar = {"x": cWidth / 2 - 18, "y": cHeight - 60, "w": 32, "h": 60}
       mainChar.fillStyle = "blue"
       ctx.fillRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
       var enemies = [];
@@ -86,6 +87,7 @@
       var spawnRate = 0.5;
 
       var blockSprite = document.getElementById("block");
+      var mainCar = document.getElementById("mainchar");
 
       var endGoal = {"x": randomNumber(1, cWidth - 50), "y": 0, "w": 30, "h": 30}
       function easyLevels () {
@@ -122,7 +124,7 @@
         ctx.fillText(`Phase ${level}`, 100, 100)
         ctx.fillText(`Score: ${score}`, 90, 200)
         ctx.fillText(`High Score: 1092`, 70, 300)
-        ctx.fillRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+        ctx.drawImage(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
         drawEnemyLevel1();
       }
 
