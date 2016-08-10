@@ -62,6 +62,7 @@
         game = setInterval(animateLevel1, 100)
         hitDetect = setInterval(detectHit, 10)
         setInterval(keepScore, 500)
+        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
       }
 
       function init () {
@@ -117,7 +118,7 @@
 
       function animateLevel1 () {
         ctx.clearRect(0, 0, cWidth, cHeight)
-        ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
+        // ctx.drawImage(mainCar, mainChar.x, mainChar.y, mainChar.w, mainChar.h)
         ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
         <!-- ctx.drawImage(backImg,0, 0, cWidth, cHeight); -->
         ctx.font="40px Gravitas One";
