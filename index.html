@@ -157,30 +157,30 @@
               }
               if (i > 125 && i < 250) {
                 level = 2
-                ctx.fillStyle = "#32AB9B"
+                enemy.fillStyle = "#32AB9B"
                 var numAdd = 10
                 spawnEnemy(enemy.x, enemy.y += dy + 3, enemy.w + numAdd, enemy.h + numAdd)
                 ctx.drawImage(blockSprite, 54,54,18,18, enemy.x, enemy.y, enemy.w + numAdd, enemy.h + numAdd)
               } else if (i < 125) {
                 level = 1
-                ctx.fillStyle = "blue"
+                enemy.fillStyle = "blue"
                 // ctx.fillRect(enemy.x, enemy.y += dy, enemy.w, enemy.h)
                 spawnEnemy(enemy.x, enemy.y += dy, enemy.w, enemy.h)
                 ctx.drawImage(blockSprite, 18,126,18,18, enemy.x, enemy.y, enemy.w, enemy.h)
               } else if (i < 375 && i > 250) {
                 level = 3
-                ctx.fillStyle = "#5A5E5E"
+                enemy.fillStyle = "#5A5E5E"
                 spawnEnemy(enemy.x, enemy.y += dy + 20, enemy.w + numAdd + dy, enemy.h + dy + numAdd)
                 ctx.drawImage(blockSprite, 54,90,18,18, enemy.x, enemy.y, enemy.w + numAdd + dy, enemy.h + numAdd + dy)
               } else if (i > 375 && i < 500) {
                 level = 4
-                ctx.fillStyle = "#AC42C2"
+                enemy.fillStyle = "#AC42C2"
                 spawnEnemy(enemy.x, enemy.y += dy + 25, enemy.w + numAdd + dy * 2.5, enemy.h + dy + numAdd * 2.5)
                 ctx.drawImage(blockSprite, 90,54,18,18, enemy.x, enemy.y, enemy.w + numAdd + dy * 2.5, enemy.h + numAdd + dy * 2.5)
               }
               else if (i > 500 && i < 3000){
                 level = "FINAL"
-                ctx.fillStyle = "#DE0B20"
+                enemy.fillStyle = "#DE0B20"
                 spawnEnemy(enemy.x, enemy.y += dy + 35, enemy.w + numAdd + dy * 4, enemy.h + dy + numAdd * 4)
                 ctx.drawImage(blockSprite, 90,90,18,18, enemy.x, enemy.y, enemy.w + numAdd + dy * 4, enemy.h + numAdd + dy * 4)
               }
