@@ -89,7 +89,8 @@
       var blockSprite = document.getElementById("block");
       var mainCar = document.getElementById("mainchar");
 
-      var endGoal = {"x": randomNumber(1, cWidth - 50), "y": 0, "w": 30, "h": 30}
+      // var endGoal = {"x": randomNumber(1, cWidth - 50), "y": 0, "w": 30, "h": 30}
+
       function easyLevels () {
           while (enemies.length < 2000) {
             if (Math.random() > spawnRate) {
@@ -125,7 +126,7 @@
       function animateLevel1 () {
         ctx.clearRect(0, 0, cWidth, cHeight)
         drawMainChar();
-        ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
+        // ctx.fillRect(endGoal.x, endGoal.y, endGoal.w, endGoal.h)
         scoreTracker();
         drawEnemyLevel1();
       }
