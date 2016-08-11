@@ -233,7 +233,8 @@
           enemies.forEach ((enemy => {
             if (mainChar.x < enemy.x + enemy.w && mainChar.x + mainChar.w > enemy.x && mainChar.y < enemy.y + enemy.h && mainChar.h + mainChar.y > enemy.y) {
               ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h);
-              ctx.fillRect(mainChar.x, mainChar.y += 35, mainChar.w, mainChar.h )
+              // ctx.fillRect(mainChar.x, mainChar.y += 35, mainChar.w, mainChar.h )
+              ctx.drawImage(mainCar, mainChar.x, mainChar.y += 30, mainChar.w, mainChar.h)
               // break
             }
           })
