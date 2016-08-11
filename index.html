@@ -136,20 +136,20 @@
       function keyPressed (event) {
         // debugger
         if (event.keyCode === 37) {
-          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
-          ctx.fillRect(mainChar.x -= 30, mainChar.y, mainChar.w, mainChar.h)
+          ctx.clearRect(mainCar.x, mainCar.y, mainCar.w, mainCar.h)
+          ctx.fillRect(mainCar.x -= 30, mainCar.y, mainCar.w, mainCar.h)
         }
         if (event.keyCode === 39) {
-          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
-          ctx.fillRect(mainChar.x += 30, mainChar.y, mainChar.w, mainChar.h)
+          ctx.clearRect(mainCar.x, mainCar.y, mainCar.w, mainCar.h)
+          ctx.fillRect(mainCar.x += 30, mainCar.y, mainCar.w, mainCar.h)
         }
         if (event.keyCode === 38) {
-          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
-          ctx.fillRect(mainChar.x, mainChar.y -= 15, mainChar.w, mainChar.h)
+          ctx.clearRect(mainCar.x, mainCar.y, mainCar.w, mainCar.h)
+          ctx.fillRect(mainCar.x, mainCar.y -= 15, mainCar.w, mainCar.h)
         }
         if (event.keyCode === 40) {
-          ctx.clearRect(mainChar.x, mainChar.y, mainChar.w, mainChar.h)
-          ctx.fillRect(mainChar.x, mainChar.y += 15, mainChar.w, mainChar.h)
+          ctx.clearRect(mainCar.x, mainCar.y, mainCar.w, mainCar.h)
+          ctx.fillRect(mainCar.x, mainCar.y += 15, mainCar.w, mainCar.h)
         }
       }
       var lost = false;
