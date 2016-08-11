@@ -55,7 +55,7 @@
 
       var canvas = document.getElementById("myCanvas");
       var ctx = canvas.getContext("2d");
-
+      var mainChar;
       var game;
       var hitDetect;
       function startGame() {
@@ -81,13 +81,14 @@
       var score = 0;
       var cWidth = canvas.width;
       var cHeight = canvas.height;
-      var mainChar = {"x": cWidth / 2 - 18, "y": cHeight - 60, "w": 50, "h": 70}
+      var mainCar = document.getElementById("mainchar");
+      var mainCar = {"x": cWidth / 2 - 18, "y": cHeight - 60, "w": 50, "h": 70}
       var enemies = [];
       var level = 1;
       var spawnRate = 0.5;
 
       var blockSprite = document.getElementById("block");
-      var mainCar = document.getElementById("mainchar");
+
 
       var endGoal = {"x": randomNumber(1, cWidth - 50), "y": 0, "w": 30, "h": 30}
       function easyLevels () {
